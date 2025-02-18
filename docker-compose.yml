@@ -1,0 +1,29 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - backend/.env
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules # Evita sobrescrever o node_modules no container
+    container_name: MyProject_TYPEORM
+    restart: always
+    depends_on:
+      - bd
+    command: npx ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --poll --watch src src/http/server.ts
+
+  bd:
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bd
+    volumes:
+      - ./data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
+    driver: local

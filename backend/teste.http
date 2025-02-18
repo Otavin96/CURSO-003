@@ -1,0 +1,28 @@
+# Metodo POST
+POST http://localhost:3000/users/cadastrar
+content-type: application/json
+
+{
+    "name": "Otavio Afonso Lazzarotto",
+    "email": "otavio@gmail.com"
+}
+
+###
+#Metodo Get
+
+GET http://localhost:3000/users/get/9a70f281-694a-420c-bd58-47409b8752bc
+
+
+###
+# Metodo UPDATE
+PUT http://localhost:3000/users/atualizar/2f758bbf-2a5c-4878-9728-5cb44b9a78cf
+content-type: application/json
+
+{
+    "name": "Nome Alterado com sucesso!!!",
+    "email": "otavio@gmail.com"
+}
+
+###
+# Metodo DELETE
+DELETE  http://localhost:3000/users/deletar/87162dd8-40be-4a38-8a9a-bcd43329c71d

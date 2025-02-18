@@ -1,0 +1,20 @@
+# Usa uma imagem oficial do Node.js
+FROM node:18-alpine
+
+# Define o diretório de trabalho
+WORKDIR /backend
+
+# Copia apenas os arquivos necessários para instalar as dependências
+COPY package.json package-lock.json ./
+
+# Instala todas as dependências, incluindo devDependencies
+RUN npm install
+
+# Copia o restante do código
+COPY . .
+
+# Garante que o TypeScript está instalado globalmente (opcional)
+RUN npm install -g typescript
+
+# Comando para iniciar o servidor
+CMD ["npm", "run", "dev"]
